@@ -58,9 +58,6 @@ polyval(q,xq)
 %%
 X = -1:0.05:1;
 N = 1:1:10;
-%[x,n] = meshgrid(X,N);
-%y = x.^(2.*n)-n.*x.^(n+1)+n.*x.^(n-1)+1;
-%plot(x,y);
 x = -1:0.05:1;
 hold on;
 grid on;
