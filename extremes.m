@@ -54,3 +54,21 @@ for a=1:3
         plot(t,f(t),x_m,y_m,'r*');
     end
 end
+%%
+a = input('введите a: ');
+b = input('введите b: ');
+t = -1:0.01:1;
+hold on;
+grid on;
+f = @(x)x.^a.*exp(-b*x);
+[x_m,y_m] = fminbnd(f,-1,1);
+plot(t,f(t),x_m,y_m,'r*');
+%%
+a = input('введите a: ');
+b = input('введите b: ');
+t = -1:0.01:1;
+hold on;
+grid on;
+f = @(x)x.^a.*(1-x).^b;
+[x_m,y_m] = fminbnd(f,-1,1);
+plot(t,f(t),x_m,y_m,'r*');
