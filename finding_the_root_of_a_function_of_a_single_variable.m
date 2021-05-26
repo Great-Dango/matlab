@@ -44,3 +44,43 @@ hold on;
 t = ginput(1);
 [px,py,flag] = fzero(f,t(1));% flag = -3 корней нет
 solve(cos(x)-exp(0.001+x.^2),x);% пустой результат - корней нет
+%%
+f = @(x)sin(x)./x;
+a = input('введите a: ');
+b = input('введите b: ');
+i = input('введите i: ');
+eps = input('введите eps: ');
+t = a:0.05:b;
+plot(t,f(t),t,0*t,'--');
+grid on;
+hold on;
+[x1, y1] = ginput(1);
+while i && abs(f(x1)) > eps
+    i = i - 1;
+    k = (cos(x1)*x1-sin(x1))/x1^2;
+    x = -f(x1)/k+x1;
+    vert = line([x,x],[0,f(x)]);
+    touch = plot(t,k*(t-x1)+f(x1),x,0,'*',x,f(x),'*');
+    pause;
+    delete(touch); delete(vert);
+    x1 = x;
+end
+%%
+f = @(x)1+(1+sin(x)-cos(x)).^2-(sin(2*x)-cos(2*x)-0.2).^2;
+eps = input('введите eps: ');
+t = -10:0.05:10;
+plot(t,f(t),t,0*t,'--');
+grid on;
+hold on;
+r = ginput(2);
+a = r(1); b = r(2);
+while abs(f(a)) > eps && f(a)*f(b) < 0
+    m = (a+b)/2;
+    if f(m) > 0 && f(a) > 0 || m < 0 && f(a) < 0
+        a = m;
+    else
+        b = m;
+    end
+    plot(m,0,'or');
+    pause;
+end
